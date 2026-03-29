@@ -48,6 +48,7 @@ public:
         rear = nullptr;
         jumlah = 0;
     }
+};
 
 // Stack berbasis linked list
 class StackRiwayat {
@@ -160,7 +161,7 @@ void tekanEnter(){
 void loopProgram(){
     QueueLayanan antrean;
     StackRiwayat riwayat;
-    
+
     int pilihan;
 
     do {
