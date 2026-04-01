@@ -1,0 +1,17 @@
+layanan-administrasi
+
+*.out
+*.o
+*.exe
+
+build/
+dist/
+*.cache
+
+*.log
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
