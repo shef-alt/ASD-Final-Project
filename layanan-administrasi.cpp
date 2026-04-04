@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -155,9 +156,6 @@ public:
     }
 };
 
-// Forward declarations
-string inputTidakBolehKosong(const string &pesan);
-string pilihJenisLayanan();
 void prosesLayanan(QueueLayanan& antrean, StackRiwayat& riwayat);
 void tampilkanLayananTerakhir(StackRiwayat& riwayat);
 void tampilkanAntreanTerdepan(QueueLayanan& antrean);
@@ -166,25 +164,12 @@ void tampilkanAntreanTerdepan(QueueLayanan& antrean);
 void tambahAntrean(QueueLayanan& antrean) {
     cout << "\n---------------- TAMBAH ANTREAN ----------------\n";
 
-    cin.ignore();
-    string nama = inputTidakBolehKosong("Masukkan nama mahasiswa : ");
-    string jenis = pilihJenisLayanan();
+    string nama;
+    cout << "Masukkan nama mahasiswa : ";
+    cin >> nama;
 
-    DataLayanan dataBaru;
-    dataBaru.namaMahasiswa = nama;
-    dataBaru.jenisLayanan = jenis;
-    dataBaru.statusLayanan = "Menunggu";
+    string jenis;
 
-    // antrean.enqueue(dataBaru);
-    antrean.enqueue(dataBaru);
-
-    cout << "\n[SUKSES] Mahasiswa berhasil ditambahkan ke antrean.\n";
-    cout << "Nama   : " << dataBaru.namaMahasiswa << "\n";
-    cout << "Layanan: " << dataBaru.jenisLayanan << "\n";
-    cout << "Status : " << dataBaru.statusLayanan << "\n";
-}
-
-string pilihJenisLayanan() {
     int pilih;
     while (true) {
         cout << "\nPilih Jenis Layanan:\n";
@@ -197,65 +182,47 @@ string pilihJenisLayanan() {
         cin >> pilih;
 
         switch (pilih) {
-            case 1: return "Legalisir";
-            case 2: return "Surat Aktif";
-            case 3: return "Verifikasi";
-            case 4: return "Ambil Berkas";
+            case 1:
+                jenis = "Legalisir";
+                break;
+            case 2:
+                jenis = "Surat Aktif";
+                break;
+            case 3:
+                jenis = "Verifikasi";
+                break;
+            case 4:
+                jenis = "Ambil Berkas";
+                break;
             case 5:
+                cout << "Masukkan jenis layanan: ";
                 cin.ignore();
-                return inputTidakBolehKosong("Masukkan jenis layanan: ");
+                getline(cin, jenis);
+                break;
             default:
-                cout << "[PERINGATAN] Pilihan tidak valid.\n";
+                cout << "Pilihan tidak valid.\n";
         }
     }
+
+    DataLayanan dataBaru;
+    dataBaru.namaMahasiswa = nama;
+    dataBaru.jenisLayanan = jenis;
+    dataBaru.statusLayanan = "Menunggu";
+
+    antrean.enqueue(dataBaru);
+
+    cout << "\n[SUKSES] Mahasiswa berhasil ditambahkan ke antrean.\n";
+    cout << "Nama   : " << dataBaru.namaMahasiswa << "\n";
+    cout << "Layanan: " << dataBaru.jenisLayanan << "\n";
+    cout << "Status : " << dataBaru.statusLayanan << "\n";
 }
 
-string inputTidakBolehKosong(const string &pesan){
-    string input;
-    do {
-        cout << pesan;
-        getline(cin, input);
-
-        if (input.empty()) {
-            cout << "Input tidak boleh kosong! Silakan isi lagi.\n";
-        }
-    } while (input.empty());
-
-    return input;
-}
-
-
-
-// MENU PROGRAM
 void garis() {
     cout << "===============================================================\n";
 }
 
-void judulProgram() {
-    garis();
-    cout << "         SISTEM ANTREAN LAYANAN ADMINISTRASI AKADEMIK          \n";
-    garis();
-    cout << " Queue : Antrean mahasiswa yang menunggu layanan\n";
-    cout << " Stack : Riwayat layanan yang telah selesai diproses\n";
-    garis();
-}
-
-void tampilkanMenu() {
-    cout << "\nMENU UTAMA\n";
-    cout << "1. Tambah mahasiswa ke antrean\n";
-    cout << "2. Proses layanan berikutnya\n";
-    cout << "3. Tampilkan layanan terakhir yang diproses\n";
-    cout << "4. Tampilkan antrean layanan\n";
-    cout << "5. Tampilkan riwayat layanan\n";
-    cout << "6. Tampilkan mahasiswa terdepan antrean\n";
-    cout << "0. Keluar\n";
-    garis();
-    cout << "Pilih menu: ";
-}
-
 void tekanEnter(){
     cout << "\nTekan ENTER untuk kembali ke menu...";
-    cin.get();
     cin.get();
 }
 
@@ -309,8 +276,23 @@ int main() {
     int pilihan;
 
     do {
-        judulProgram();
-        tampilkanMenu();
+        garis();
+        cout << "         SISTEM ANTREAN LAYANAN ADMINISTRASI AKADEMIK          \n";
+        garis();
+        cout << " Queue : Antrean mahasiswa yang menunggu layanan\n";
+        cout << " Stack : Riwayat layanan yang telah selesai diproses\n";
+        garis();
+
+        cout << "\nMENU UTAMA\n";
+        cout << "1. Tambah mahasiswa ke antrean\n";
+        cout << "2. Proses layanan berikutnya\n";
+        cout << "3. Tampilkan layanan terakhir yang diproses\n";
+        cout << "4. Tampilkan antrean layanan\n";
+        cout << "5. Tampilkan riwayat layanan\n";
+        cout << "6. Tampilkan mahasiswa terdepan antrean\n";
+        cout << "0. Keluar\n";
+        garis();
+        cout << "Pilih menu: ";
         cin >> pilihan;
 
         switch (pilihan) {
