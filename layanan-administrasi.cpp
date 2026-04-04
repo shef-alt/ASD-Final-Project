@@ -279,9 +279,6 @@ int main() {
         garis();
         cout << "         SISTEM ANTREAN LAYANAN ADMINISTRASI AKADEMIK          \n";
         garis();
-        cout << " Queue : Antrean mahasiswa yang menunggu layanan\n";
-        cout << " Stack : Riwayat layanan yang telah selesai diproses\n";
-        garis();
 
         cout << "\nMENU UTAMA\n";
         cout << "1. Tambah mahasiswa ke antrean\n";
