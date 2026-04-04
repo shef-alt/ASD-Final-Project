@@ -11,21 +11,11 @@ struct DataLayanan {
 struct NodeQueue {
     DataLayanan data;
     NodeQueue* next;
-
-    NodeQueue(DataLayanan d) {
-        data = d;
-        next = nullptr;
-    }
 };
 
 struct NodeStack {
     DataLayanan data;
     NodeStack* next;
-
-    NodeStack(DataLayanan d) {
-        data = d;
-        next = nullptr;
-    }
 };
 
 // Queue berbasis linked list
@@ -43,7 +33,7 @@ public:
     }
 
     void enqueue(DataLayanan data) {
-        NodeQueue* nodeBaru = new NodeQueue(data);
+        NodeQueue* nodeBaru = new NodeQueue{data, nullptr};
         if (rear == nullptr) {
             front = rear = nodeBaru;
         } else {
@@ -114,7 +104,7 @@ public:
     }
 
     void push(DataLayanan data) {
-        NodeStack* nodeBaru = new NodeStack(data);
+        NodeStack* nodeBaru = new NodeStack{data, nullptr};
         nodeBaru->next = topNode;
         topNode = nodeBaru;
         jumlah++;
