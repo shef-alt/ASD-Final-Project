@@ -266,6 +266,7 @@ void tampilkanMenu() {
 void tekanEnter(){
     cout << "\nTekan ENTER untuk kembali ke menu...";
     cin.get();
+    cin.get();
 }
 
 void prosesLayanan(QueueLayanan& antrean, StackRiwayat& riwayat) {
